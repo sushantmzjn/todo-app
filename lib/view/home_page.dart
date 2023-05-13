@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -100,28 +101,45 @@ class _HomePageState extends ConsumerState<HomePage> {
                               IconButton(
                                   padding: EdgeInsets.zero,
                                   constraints: BoxConstraints(),
-                                  onPressed: todos[index].isCompleted == false ? (){
-                                    showDialog(
+                                  onPressed: todos[index].isCompleted == false ? ()async{
+                                   await showModal(
+                                     configuration: const FadeScaleTransitionConfiguration(
+                                         transitionDuration: Duration(milliseconds: 400)
+                                     ),
                                       context: context,
                                       builder: (BuildContext context) {
-                                        return TaskDialogBox(
-                                          controller: updateTaskController..text = todos[index].title,
-                                          onFieldSubmitted: (val){
-                                            if(val.trim().isEmpty){
-                                              return 'required';
-                                            }else{
-                                              final updateTask = ToDo(
-                                              title: updateTaskController.text.trim(),
-                                              isCompleted: todos[index].isCompleted,
-                                              dateTime: DateFormat('d LLL, yyyy').format(DateTime.parse(DateTime.now().toString()))
-                                              );
-                                              final res =  ref.read(addTaskProvider.notifier).update(index,updateTask);
-                                              if(res == 'updated'){
-                                                Navigator.of(context).pop();
-                                                SnackShow.showSuccess(context, 'Task Updated');
-                                              }
-                                            }
-                                            },
+                                       updateTaskController.text = todos[index].title;
+                                        return StatefulBuilder(
+                                          builder: (BuildContext context, void Function(void Function()) setState) {
+                                            return TaskDialogBox(
+                                              controller: updateTaskController,
+                                              onChanged: (val){ setState(() {});},
+                                              suffixIcon: updateTaskController.text.isEmpty ? null :
+                                              GestureDetector(
+                                                  onTap: (){
+                                                    setState((){
+                                                      updateTaskController.clear();
+                                                    });
+                                                  },
+                                                  child: Icon(CupertinoIcons.multiply_circle, color: Colors.black,)),
+                                              onFieldSubmitted: (val){
+                                                if(val.trim().isEmpty){
+                                                  return SnackShow.showFailure(context, 'required');
+                                                }else{
+                                                  final updateTask = ToDo(
+                                                      title: updateTaskController.text.trim(),
+                                                      isCompleted: todos[index].isCompleted,
+                                                      dateTime: DateFormat('d LLL, yyyy').format(DateTime.parse(DateTime.now().toString()))
+                                                  );
+                                                  final res =  ref.read(addTaskProvider.notifier).update(index,updateTask);
+                                                  if(res == 'updated'){
+                                                    Navigator.of(context).pop();
+                                                    SnackShow.showSuccess(context, 'Task Updated');
+                                                  }
+                                                }
+                                              },
+                                            );
+                                          },
                                         );
                                         },
                                     );
@@ -164,29 +182,39 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
               context: context,
               builder: (BuildContext context) {
-                  return Form(
-                    key: _from,
-                    child: TaskDialogBox(
-                      controller: taskController,
-                      onFieldSubmitted: (val){
-                        if(val.trim().isEmpty){
-                          return SnackShow.showFailure(context, 'required');
-                        }else{
-                          final newTask = ToDo(
-                              title: taskController.text.trim(),
-                              isCompleted: false,
-                              dateTime: DateFormat('d LLL, yyyy').format(DateTime.parse(DateTime.now().toString()))
-                          );
+                  return StatefulBuilder(
+                    builder: (BuildContext context, void Function(void Function()) setState) {
+                      return TaskDialogBox(
+                        controller: taskController,
+                        onChanged: (val){ setState(() {});},
+                        suffixIcon: taskController.text.isEmpty ? null :
+                        GestureDetector(
+                            onTap: (){
+                              setState((){
+                                taskController.clear();
+                              });
+                            },
+                            child: Icon(CupertinoIcons.multiply_circle, color: Colors.black,)),
+                        onFieldSubmitted: (val){
+                          if(val.trim().isEmpty){
+                            return SnackShow.showFailure(context, 'required');
+                          }else{
+                            final newTask = ToDo(
+                                title: taskController.text.trim(),
+                                isCompleted: false,
+                                dateTime: DateFormat('d LLL, yyyy').format(DateTime.parse(DateTime.now().toString()))
+                            );
 
-                         final res =  ref.read(addTaskProvider.notifier).add(newTask);
-                         if(res == 'Task Added'){
-                           SnackShow.showSuccess(context, 'New Task Added');
-                           Navigator.pop(context);
-                           taskController.clear();
-                         }
-                        }
-                      },
-                    ),
+                            final res =  ref.read(addTaskProvider.notifier).add(newTask);
+                            if(res == 'Task Added'){
+                              SnackShow.showSuccess(context, 'New Task Added');
+                              Navigator.pop(context);
+                              taskController.clear();
+                            }
+                          }
+                        },
+                      );
+                    },
                   );
               },
 
@@ -198,5 +226,4 @@ class _HomePageState extends ConsumerState<HomePage> {
     ) : null,
     );
   }
-  final _from = GlobalKey<FormState>();
 }
