@@ -49,13 +49,14 @@ class _HiddenDrawerWidgetState extends State<HiddenDrawerWidget> {
   Widget build(BuildContext context) {
     return HiddenDrawerMenu(
       backgroundColorMenu: const Color(0xff393646).withOpacity(0.8),
-      slidePercent: 60.0,
+      slidePercent: 50.0,
       screens: _pages,
       initPositionSelected: 0,
       isDraggable: true,
       elevationAppBar: 0,
       leadingAppBar: Icon(Icons.menu_rounded),
       isTitleCentered: true,
+
     );
   }
 }

@@ -51,4 +51,16 @@ class TodosProvider extends StateNotifier<List<ToDo>> {
     state = [...state];
     return checkBox.isCompleted;
   }
+
+  //count total completed task
+  int countCompletedTasks(List<ToDo> tasks) {
+    int count = 0;
+    for (final task in tasks) {
+      if (task.isCompleted) {
+        count++;
+      }
+    }
+    return count;
+  }
+
 }

@@ -21,6 +21,12 @@ final box2 = Provider<List<Meal>>((ref) => []);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //lock orientation
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]);
+  //status bar
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Color(0xff393646),
   ));
