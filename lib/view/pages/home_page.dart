@@ -8,7 +8,7 @@ import 'package:todos/model/todos.dart';
 import 'package:todos/view/common%20widget/snackbar.dart';
 import 'package:todos/view/task_dialog_box.dart';
 
-import '../provider/todos_provider.dart';
+import '../../provider/todos_provider.dart';
 
 class HomePage extends ConsumerStatefulWidget {
 
@@ -28,18 +28,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     return Scaffold(
       backgroundColor: const Color(0xff393646),
-      body: NestedScrollView(
-        floatHeaderSlivers: true,
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>[
-          const SliverAppBar(
-            floating: true,
-            snap: true,
-            title: Text('To-Do Task', style: TextStyle(letterSpacing: 1),),
-            centerTitle: true,
-            forceElevated: true,
-            elevation: 1,
-          )
-        ],
+
         body: todos.isEmpty ? const Center(child: Text('Todo List is Empty', style: TextStyle(color: Colors.white),)) :
             NotificationListener<UserScrollNotification>(
               onNotification: (notification){
@@ -53,7 +42,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               child: ListView.builder(
                 padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                 shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(),
                   itemCount: todos.length,
                   itemBuilder: (context, index){
                     return Padding(
@@ -166,7 +155,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                     );
               }),
             ),
-      ),
 
         floatingActionButton: isFab ? FloatingActionButton.extended(
           elevation: 0,
