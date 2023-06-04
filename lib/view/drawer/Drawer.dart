@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
+
 import 'package:todos/view/pages/calorie.dart';
 import 'package:todos/view/pages/home_page.dart';
+
 
 class HiddenDrawerWidget extends StatefulWidget {
   @override
@@ -28,7 +30,6 @@ class _HiddenDrawerWidgetState extends State<HiddenDrawerWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
     _pages = [
       ScreenHiddenDrawer(
           ItemHiddenMenu(
@@ -44,6 +45,7 @@ class _HiddenDrawerWidgetState extends State<HiddenDrawerWidget> {
           Calorie())
     ];
   }
+
 
   @override
   Widget build(BuildContext context) {

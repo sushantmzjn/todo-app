@@ -41,7 +41,6 @@ class _CalorieAlertDialogState extends State<CalorieAlertDialog> {
         shape: BeveledRectangleBorder(
           borderRadius: BorderRadius.circular(6.0),
         ),
-        alignment: Alignment.bottomCenter,
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

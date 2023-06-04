@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class TaskDialogBox extends StatefulWidget {
   TextEditingController? controller;
   Function(String)? onFieldSubmitted;
@@ -20,11 +21,11 @@ class _TaskDialogBoxState extends State<TaskDialogBox> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      alignment: Alignment.bottomCenter,
       contentPadding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
       shape: BeveledRectangleBorder(
           borderRadius: BorderRadius.circular(6.0),
       ),
-      alignment: Alignment.bottomCenter,
       content: TextFormField(
         maxLength: 30,
         controller: widget.controller,
@@ -32,7 +33,7 @@ class _TaskDialogBoxState extends State<TaskDialogBox> {
         onChanged: widget.onChanged,
         decoration: InputDecoration(
           suffixIcon: widget.suffixIcon,
-          labelText: 'Task Name',
+          labelText: 'task',
           contentPadding: const EdgeInsets.symmetric(horizontal: 8),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(6.0),

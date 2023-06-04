@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+
 import 'package:todos/model/todos.dart';
 import 'package:todos/view/common%20widget/snackbar.dart';
 import 'package:todos/view/task_dialog_box.dart';
@@ -30,8 +32,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     return Scaffold(
       backgroundColor: const Color(0xff393646),
 
-        body: todos.isEmpty ? const Center(child: Text('Todo List is Empty', style: TextStyle(color: Colors.white),)) :
-            NotificationListener<UserScrollNotification>(
+        body: NotificationListener<UserScrollNotification>(
               onNotification: (notification){
                 if(notification.direction == ScrollDirection.forward){
                   if(!isFab) setState(() { isFab = true; });
@@ -47,7 +48,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
                     width: 200.w,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(4.0),
                       border: Border.all(color: Colors.white)
                     ),
                     child: Row(
@@ -77,11 +78,24 @@ class _HomePageState extends ConsumerState<HomePage> {
                       ],
                     ),
                   ),
-                  Flexible(
+                  todos.isEmpty ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.1,),
+                      SvgPicture.asset('assets/images/no_data.svg',
+                        width: MediaQuery.of(context).size.width,
+                        height: 180.h,
+                        ),
+                      Text('Todo list is empty',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                      )
+                    ],
+                  ) : Flexible(
                     child: ListView.builder(
                       padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
                       shrinkWrap: true,
-                        physics: const AlwaysScrollableScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         itemCount: todos.length,
                         itemBuilder: (context, index){
                           return Padding(
@@ -89,7 +103,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                             child: Container(
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.white),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(4.0),
                               ),
                               child: ListTile(
                                 contentPadding: EdgeInsets.only(left: 0,top: 0, bottom: 0, right: 14.0),
@@ -251,9 +265,9 @@ class _HomePageState extends ConsumerState<HomePage> {
 
             );
           },
-          label: Text('Add Task'),
+          extendedPadding: EdgeInsets.symmetric(horizontal: 8.0),
+          label: Text('add task', style: TextStyle(letterSpacing: 0),),
           icon: Icon(Icons.add),
-
     ) : null,
     );
   }
