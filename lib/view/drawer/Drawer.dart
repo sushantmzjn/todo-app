@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
+import 'package:todos/about.dart';
 
 import 'package:todos/view/pages/calorie.dart';
 import 'package:todos/view/pages/home_page.dart';
-
+import 'package:todos/view/pages/news.dart';
+import 'package:todos/view/pages/ships.dart';
 
 class HiddenDrawerWidget extends StatefulWidget {
   @override
@@ -42,10 +44,25 @@ class _HiddenDrawerWidgetState extends State<HiddenDrawerWidget> {
               name: 'Calorie',
               baseStyle: txtStyle,
               selectedStyle: selectedTxtStyle),
-          Calorie())
+          Calorie()),
+      ScreenHiddenDrawer(
+        ItemHiddenMenu(
+            name: 'News', baseStyle: txtStyle, selectedStyle: selectedTxtStyle),
+        News(),
+      ),
+      ScreenHiddenDrawer(
+        ItemHiddenMenu(
+            name: 'Ships', baseStyle: txtStyle, selectedStyle: selectedTxtStyle),
+        Ships(),
+      ),
+      ScreenHiddenDrawer(
+        ItemHiddenMenu(
+            name: 'About', baseStyle: txtStyle, selectedStyle: selectedTxtStyle),
+        About(),
+      ),
+
     ];
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +75,6 @@ class _HiddenDrawerWidgetState extends State<HiddenDrawerWidget> {
       elevationAppBar: 0,
       leadingAppBar: Icon(Icons.menu_rounded),
       isTitleCentered: true,
-
     );
   }
 }

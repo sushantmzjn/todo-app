@@ -29,6 +29,7 @@ void main() async {
   //status bar
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Color(0xff393646),
+    systemNavigationBarColor: Color(0xff393646),
   ));
   await Hive.initFlutter();
   Hive.registerAdapter(ToDoAdapter());
