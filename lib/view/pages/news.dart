@@ -121,6 +121,7 @@ class _NewsState extends ConsumerState<News> {
                 ref.refresh(newProvider.notifier).getNews(q: searchController.text.trim());
               },
               child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
                   itemCount: newsData.news.length,
                   itemBuilder: (context, index){
                    final news = newsData.news[index];

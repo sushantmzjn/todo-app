@@ -9,6 +9,8 @@ import 'package:todos/view/pages/home_page.dart';
 import 'package:todos/view/pages/news.dart';
 import 'package:todos/view/pages/ships.dart';
 
+import '../pages/football.dart';
+
 class HiddenDrawerWidget extends StatefulWidget {
   @override
   State<HiddenDrawerWidget> createState() => _HiddenDrawerWidgetState();
@@ -57,7 +59,12 @@ class _HiddenDrawerWidgetState extends State<HiddenDrawerWidget> {
       ),
       ScreenHiddenDrawer(
         ItemHiddenMenu(
-            name: 'About', baseStyle: txtStyle, selectedStyle: selectedTxtStyle),
+            name: 'Football', baseStyle: txtStyle, selectedStyle: selectedTxtStyle),
+        Football(),
+      ),
+      ScreenHiddenDrawer(
+        ItemHiddenMenu(
+            name: 'About Me', baseStyle: txtStyle, selectedStyle: selectedTxtStyle),
         About(),
       ),
 
