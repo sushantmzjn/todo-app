@@ -64,7 +64,9 @@ class MatchDetail extends ConsumerWidget {
                                 height: 60.h,
                                 child: score.home_team_logo.trim().isEmpty
                                     ? Center(child: Text('image not available'))
-                                    : Image.network(score.home_team_logo)),
+                                    : Hero(
+                                    tag: 'image-${score.home_team_logo}',
+                                    child: Image.network(score.home_team_logo))),
                             SizedBox(height: 2.h,),
                             Text(score.event_home_team, textAlign: TextAlign.center),
                             Text(score.event_home_formation, textAlign: TextAlign.center),
@@ -97,7 +99,9 @@ class MatchDetail extends ConsumerWidget {
                                 height: 60.h,
                                 child: score.away_team_logo.trim().isEmpty
                                     ? Center(child: Text('image not available'))
-                                    : Image.network(score.away_team_logo)),
+                                    : Hero(
+                                    tag: 'image-${score.away_team_logo}',
+                                    child: Image.network(score.away_team_logo))),
                             SizedBox(height: 2.h,),
                             Text(score.event_away_team, textAlign: TextAlign.center,),
                             Text(score.event_away_formation, textAlign: TextAlign.center),

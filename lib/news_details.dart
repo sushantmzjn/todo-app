@@ -22,6 +22,7 @@ class NewsDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   print(news.urlToImage);
     return Scaffold(
      appBar: AppBar(
       title: Text('News'),
@@ -63,10 +64,10 @@ class NewsDetail extends StatelessWidget {
          ],),
           SizedBox(height: 12.h,),
           ClipRRect(
-            borderRadius: BorderRadius.circular(6.0),
+            borderRadius: BorderRadius.circular(4.0),
             child: CachedNetworkImage(
-              errorWidget: (context, url, error)=> const Text('image not found', style: TextStyle(color: Colors.white),),
-              placeholder: (context, url)=> Center(child: CupertinoActivityIndicator()),
+              errorWidget: (context, url, error)=> const Text('image not found',),
+              placeholder: (context, url)=> Center(child: CupertinoActivityIndicator(color: Colors.white,)),
               imageUrl: news.urlToImage,),
           ),
           SizedBox(height: 6.h,),

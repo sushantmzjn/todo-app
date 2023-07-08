@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -132,7 +133,6 @@ class _NewsState extends ConsumerState<News> {
                           Get.to(()=> NewsDetail(news: news), transition: Transition.rightToLeftWithFade);
                         },
                         child: Container(
-                          padding: EdgeInsets.all(10.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4.0),
                             border: Border.all(color: Colors.white)
@@ -140,19 +140,34 @@ class _NewsState extends ConsumerState<News> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(news.title, style: TextStyle(color: Colors.white, fontSize: 15.sp, fontWeight: FontWeight.w600)),
-                              SizedBox(height: 12.h,),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text('Source : ', style: TextStyle(color: Colors.white, fontSize: 12.sp),),
-                                      Text(news.source.name, style: TextStyle(color: Colors.blue, fontSize: 12.sp),),
-                                    ],
-                                  ),
-                                  Text(DateFormat('yMMMMd').format(DateTime.parse(news.publishedAt)),style: TextStyle(color: Colors.blue, fontSize: 12.sp)),
-                                ],
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(4.0),
+                                child: CachedNetworkImage(
+                                  errorWidget: (context, url, error)=> const Text('image not found', style: TextStyle(color: Colors.white),),
+                                  placeholder: (context, url)=> Center(child: CupertinoActivityIndicator(color: Colors.white,)),
+                                  imageUrl: news.urlToImage,),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(news.title, style: TextStyle(color: Colors.white, fontSize: 15.sp, fontWeight: FontWeight.w600)),
+                                    SizedBox(height: 12.h,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text('Source : ', style: TextStyle(color: Colors.white, fontSize: 12.sp),),
+                                            Text(news.source.name, style: TextStyle(color: Colors.blue, fontSize: 12.sp),),
+                                          ],
+                                        ),
+                                        Text(DateFormat('yMMMMd').format(DateTime.parse(news.publishedAt)),style: TextStyle(color: Colors.blue, fontSize: 12.sp)),
+                                      ],
+                                    )
+                                  ],
+                                ),
                               )
 
                             ],

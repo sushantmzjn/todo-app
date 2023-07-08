@@ -24,7 +24,7 @@ class About extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 60,
-            backgroundImage: NetworkImage('https://scontent.fktm7-1.fna.fbcdn.net/v/t1.18169-9/26112078_1985706811704543_6013809511908769784_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ngXaHKMMIzAAX-lE9PX&_nc_oc=AQlHtrWqoLesM0GKNixoPjrUwgCc2P0XoACy7cDy5uMnIKm6aOLfSsau2_K2cMcelDvcKcqP0U6PokrTQsthzPD_&_nc_ht=scontent.fktm7-1.fna&oh=00_AfBJNxGyPV_-sI3330BhMcSWbIgQ-YkgXNVUJGszaKPpAg&oe=64A7964A'),
+            backgroundImage: NetworkImage('https://scontent.fktm7-1.fna.fbcdn.net/v/t1.18169-9/26112078_1985706811704543_6013809511908769784_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=0A0CxcxKKFAAX98ZrE0&_nc_oc=AQkapZYjknvfez9STV4XdeVdyo2-71VSTdo7Q29AI-76yLWKBYpIJaTEGB6c8063ez6nzNtYbpW7z_vFv9o11C99&_nc_ht=scontent.fktm7-1.fna&oh=00_AfCp5B6V1MvNXqW_7af6fDkBVvZbPNx9VSIQ6NmAowpQgA&oe=64D0AD0A'),
           ),
           SizedBox(height: 12.h,),
           Text('Sushant Maharjan', style: TextStyle(color: Colors.white, fontSize: 16.sp),),
@@ -76,7 +76,7 @@ class About extends StatelessWidget {
                     urlLaunch('https://github.com/sushantmzjn');
                   },
                   icon: FaIcon(FontAwesomeIcons.github, color: Colors.white)
-              )
+              ),
             ],
           )
         ],

@@ -10,6 +10,7 @@ import 'package:todos/view/pages/news.dart';
 import 'package:todos/view/pages/ships.dart';
 
 import '../pages/football.dart';
+import '../pages/youtube.dart';
 
 class HiddenDrawerWidget extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _HiddenDrawerWidgetState extends State<HiddenDrawerWidget> {
       fontWeight: FontWeight.w700,
       letterSpacing: 1);
   final selectedTxtStyle = TextStyle(
-      color: Colors.blue,
+      color: const Color(0xff393646),
       fontSize: 16.sp,
       fontWeight: FontWeight.w700,
       letterSpacing: 1);
@@ -37,33 +38,45 @@ class _HiddenDrawerWidgetState extends State<HiddenDrawerWidget> {
     _pages = [
       ScreenHiddenDrawer(
           ItemHiddenMenu(
+              colorLineSelected: const Color(0xff393646),
               name: 'Task List',
               baseStyle: txtStyle,
               selectedStyle: selectedTxtStyle),
           HomePage()),
       ScreenHiddenDrawer(
           ItemHiddenMenu(
+              colorLineSelected: const Color(0xff393646),
               name: 'Calorie',
               baseStyle: txtStyle,
               selectedStyle: selectedTxtStyle),
           Calorie()),
       ScreenHiddenDrawer(
         ItemHiddenMenu(
+            colorLineSelected: const Color(0xff393646),
             name: 'News', baseStyle: txtStyle, selectedStyle: selectedTxtStyle),
         News(),
       ),
       ScreenHiddenDrawer(
         ItemHiddenMenu(
+            colorLineSelected: const Color(0xff393646),
             name: 'Ships', baseStyle: txtStyle, selectedStyle: selectedTxtStyle),
         Ships(),
       ),
       ScreenHiddenDrawer(
         ItemHiddenMenu(
+            colorLineSelected: const Color(0xff393646),
             name: 'Football', baseStyle: txtStyle, selectedStyle: selectedTxtStyle),
         Football(),
       ),
       ScreenHiddenDrawer(
         ItemHiddenMenu(
+            colorLineSelected: const Color(0xff393646),
+            name: 'Youtube Popular', baseStyle: txtStyle, selectedStyle: selectedTxtStyle),
+        YoutubePopular(),
+      ),
+      ScreenHiddenDrawer(
+        ItemHiddenMenu(
+            colorLineSelected: const Color(0xff393646),
             name: 'About Me', baseStyle: txtStyle, selectedStyle: selectedTxtStyle),
         About(),
       ),
@@ -80,7 +93,7 @@ class _HiddenDrawerWidgetState extends State<HiddenDrawerWidget> {
       initPositionSelected: 0,
       isDraggable: true,
       elevationAppBar: 0,
-      leadingAppBar: Icon(Icons.menu_rounded),
+      leadingAppBar: Icon(Icons.menu_sharp),
       isTitleCentered: true,
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,6 +28,15 @@ class _FootballState extends ConsumerState<Football> with TickerProviderStateMix
     // TODO: implement dispose
     controller.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer.periodic(Duration(minutes: 1), (_) {
+      ref.invalidate(footballLiveScoreProvider);
+    });
   }
 
   @override
@@ -61,7 +72,7 @@ class _FootballState extends ConsumerState<Football> with TickerProviderStateMix
                   onPressed: () async{
                     ref.invalidate(footballLiveScoreProvider);
                   },
-                  child: Icon(Icons.refresh),
+                  child: liveData.isRefreshing ? CupertinoActivityIndicator(color: Colors.white,) : Icon(Icons.refresh),
                 ),
               ],
             ),
@@ -70,74 +81,83 @@ class _FootballState extends ConsumerState<Football> with TickerProviderStateMix
           Expanded(
               child: liveData.when(
                   data: (data){
-                    return ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                        itemCount: data.length,
-                        itemBuilder: (context, index){
-                          final score= data[index];
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-                            child: GestureDetector(
-                              onTap: (){
-                                Get.to(()=> MatchDetail(score: score),transition: Transition.rightToLeftWithFade);
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(6.0)
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    //home
-                                    Flexible(
-                                      child: Column(
-                                        children: [
-                                          SizedBox(
-                                              height : 60.h,
-                                              child: score.home_team_logo.trim().isEmpty ? Center(child: Text('image not available')): Image.network(score.home_team_logo)
-                                          ),
-                                          SizedBox(height: 2.h,),
-                                          Text(score.event_home_team, textAlign: TextAlign.center),
-                                          Text(score.event_home_formation, textAlign: TextAlign.center),
-                                        ],
+                    return RefreshIndicator(
+                      onRefresh: () async{
+                        ref.invalidate(footballLiveScoreProvider);
+                      },
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                          itemCount: data.length,
+                          itemBuilder: (context, index){
+                            final score= data[index];
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                              child: GestureDetector(
+                                onTap: (){
+                                  Get.to(()=> MatchDetail(score: score),transition: Transition.rightToLeftWithFade);
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(6.0)
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      //home
+                                      Flexible(
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                                height : 60.h,
+                                                child: score.home_team_logo.trim().isEmpty ? Center(child: Text('image not available')): Hero(
+                                                    tag: 'image-${score.home_team_logo}',
+                                                    child: Image.network(score.home_team_logo))
+                                            ),
+                                            SizedBox(height: 2.h,),
+                                            Text(score.event_home_team, textAlign: TextAlign.center),
+                                            Text(score.event_home_formation, textAlign: TextAlign.center),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    //score
-                                    Flexible(
-                                      child: Column(
-                                        children: [
-                                         Text(score.event_final_result, style: TextStyle(fontSize: 16.sp),),
-                                          SizedBox(height: 10.h,),
-                                          Text('Time : ${score.event_status}', style: TextStyle(fontSize: 10.sp),)
-                                        ],
+                                      //score
+                                      Flexible(
+                                        child: Column(
+                                          children: [
+                                           Text(score.event_final_result, style: TextStyle(fontSize: 16.sp),),
+                                            SizedBox(height: 10.h,),
+                                            Text('Time : ${score.event_status}', style: TextStyle(fontSize: 10.sp),)
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    //away
-                                    Flexible(
-                                      child: Column(
-                                        children: [
-                                          SizedBox(
-                                              height : 60.h,
-                                              child: score.away_team_logo.trim().isEmpty ? Center(child: Text('image not available'))
-                                                  : Image.network(score.away_team_logo)
-                                          ),
-                                          SizedBox(height: 2.h,),
-                                          Text(score.event_away_team, textAlign: TextAlign.center,),
-                                          Text(score.event_away_formation, textAlign: TextAlign.center),
+                                      //away
+                                      Flexible(
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                                height : 60.h,
+                                                child: score.away_team_logo.trim().isEmpty ? Center(child: Text('image not available'))
+                                                    : Hero(
+                                                    tag: 'image-${score.away_team_logo}',
+                                                    child: Image.network(score.away_team_logo))
+                                            ),
+                                            SizedBox(height: 2.h,),
+                                            Text(score.event_away_team, textAlign: TextAlign.center,),
+                                            Text(score.event_away_formation, textAlign: TextAlign.center),
 
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                    });
+                            );
+                      }),
+                    );
                   },
-                  error: (error, stack)=> Text('$error'),
+                  error: (error, stack)=> Text('$error',style: TextStyle(color: Colors.white),),
                   loading: ()=> Center(child: CircularProgressIndicator(color: Colors.white,)))
           )
         ],

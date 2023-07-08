@@ -15,13 +15,14 @@ class Ships extends ConsumerWidget {
     final shipData = ref.watch(shipProvider);
     return Scaffold(
       backgroundColor: const Color(0xff393646),
-      body: shipData.when(
+      body:shipData.isRefreshing ? const Center(child: CupertinoActivityIndicator(color: Colors.blueAccent,)) : shipData.when(
           data: (data){
             return RefreshIndicator(
               onRefresh: () async{
                 ref.invalidate(shipProvider);
               },
               child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
                   itemCount: data.length,
                   itemBuilder: (context,index){
                     final ships = data[index];
