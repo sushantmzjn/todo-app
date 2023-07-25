@@ -31,9 +31,7 @@ class Ships {
       home_port: json['home_port'] ?? '',
       url: json['url'] ?? '',
       image: json['image'] ?? '',
-      missions: List<Mission>.from(
-              json['missions'].map((e) => Mission.fromJson(e))) ??
-          [],
+      missions: List<Mission>.from(json['missions'].map((e) => Mission.fromJson(e))) ?? [],
     );
   }
 }

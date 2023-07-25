@@ -318,14 +318,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
-  flutter_form_builder:
-    dependency: "direct main"
-    description:
-      name: flutter_form_builder
-      sha256: "9b098f6a5f8a6381016a5fe9cdccc900683917d1fb930e1c6c6c051ca0f01f08"
-      url: "https://pub.dev"
-    source: hosted
-    version: "9.0.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -416,14 +408,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "10.4.0"
-  form_validation:
-    dependency: "direct main"
-    description:
-      name: form_validation
-      sha256: e3346a69ad3fa16b6fed7d1c3f14639eb5fba513bbbb3301877e3ad755bbd1e4
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.2+1"
   freezed_annotation:
     dependency: transitive
     description:
@@ -648,14 +632,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
-  json_class:
-    dependency: transitive
-    description:
-      name: json_class
-      sha256: "26dc861af85f6894da6346b65875ca9b147a899094dc952a0502f2eb38a2c25d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.2"
   lints:
     dependency: transitive
     description:
@@ -1037,6 +1013,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  syncfusion_flutter_charts:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_charts
+      sha256: d2addea39e0d43d718cb7760551aa6a5205354f92711d64ab6c6c0de308c251a
+      url: "https://pub.dev"
+    source: hosted
+    version: "22.1.39"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: "83e0937c1d747003e7d2514d093a28101953737a155ad7a1465006a95aa78cd4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "22.1.39"
   synchronized:
     dependency: transitive
     description:

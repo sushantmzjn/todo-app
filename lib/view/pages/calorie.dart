@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../model/meal model/meal.dart';
 import '../../model/total calorie model/calorie.dart';
 import '../../provider/autoValidate_provider.dart';
@@ -24,8 +25,7 @@ class Calorie extends ConsumerWidget {
     final mealData = ref.watch(calorieAddProvider);
     final mode = ref.watch(autoValidateMode);
 
-    final totalCaloriesByDate = ref.watch(calorieAddProvider.notifier).calculateTotalCaloriesByDate();
-
+    List<TotalCalorie> datal = mealData;
 
     return  Scaffold(
       backgroundColor: const Color(0xff393646),
@@ -72,9 +72,7 @@ class Calorie extends ConsumerWidget {
                                             trailing: Text(mealData[index].meal[position].calorie.toString(), style: TextStyle(color: Colors.white)),
                                             contentPadding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 0),
                                           ),
-                                          Divider(
-                                            color: Colors.white,
-                                            height: 0,)
+                                          const Divider(color: Colors.white, height: 0,)
                                         ],
                                       );
 
@@ -90,50 +88,28 @@ class Calorie extends ConsumerWidget {
                     padding: EdgeInsets.symmetric(horizontal: 18.0),
                     alignment: Alignment.centerLeft,
                     child: Text('Daily Calorie Intake', style: TextStyle(fontSize: 15.sp, letterSpacing: 0.5,  color: Colors.white))),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Container(
-                    height: 220.h,
-                    width: 230.w,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(12.0)
+                SfCartesianChart(
+                  primaryXAxis: CategoryAxis(),
+                  primaryYAxis: NumericAxis(),
+                  isTransposed: true, // Set this property to true to rotate the chart by 90 degrees
+                  series: <BarSeries<TotalCalorie, String>>[
+                    BarSeries<TotalCalorie, String>(
+                      dataSource: datal,
+                      xValueMapper: (TotalCalorie t, _) => t.dateTime,
+                      yValueMapper: (TotalCalorie t, _) => t.totalCalorie,
+                      dataLabelSettings: DataLabelSettings(isVisible: false),
+                      width: 0.35,
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(2.0), topLeft: Radius.circular(.0)),
                     ),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text('Date', style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold,color: Colors.white),),
-                            SizedBox(width: 35.w,),
-                            Text('Total Calorie', style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold, color:  Colors.white)),
-                          ],
-                        ),
-                        Divider(color: Colors.white,),
-                        Flexible(
-                          child: ListView.builder(
-                              itemCount: mealData.length,
-                              itemBuilder: (context, i){
-                                return Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(mealData[i].dateTime,style: TextStyle(color: Colors.white)),
-                                        SizedBox(width: 35.w,),
-                                        Text(mealData[i].totalCalorie.toString(), style: TextStyle(color: Colors.white)),
-                                      ],
-                                    ),
-                                    Divider(color: Colors.white,)
-                                  ],
-                                );
-
-                              }),
-                        )
-                      ],
-                    ),
+                  ],
+                  tooltipBehavior: TooltipBehavior(
+                    enable: true,
+                    header: '',
+                    format: 'point.x : point.y', // Customize the tooltip text as needed
                   ),
-                )
+                ),
+
+
               ],
             ),
           )
@@ -224,6 +200,8 @@ class Calorie extends ConsumerWidget {
     );
   }
 }
+
+
 
 
 

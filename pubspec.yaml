@@ -44,18 +44,19 @@ dependencies:
   font_awesome_flutter: ^10.4.0
   flutter_local_notifications: ^14.1.1
   pod_player: ^0.1.5
+  syncfusion_flutter_charts: ^22.1.39
 
-
-  flutter_form_builder: ^9.0.0
-  form_validation: ^3.0.2+1
 
 
 flutter_native_splash:
-  android_12:
-  android12: true
-  android: true
   color: "#ffffff"
   image: assets/images/todo.png
+
+android_12:
+  color: "#42a5f5"
+  image: assets/images/todo.png
+
+
 
 
 

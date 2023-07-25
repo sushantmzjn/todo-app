@@ -12,7 +12,7 @@ class CountryList {
   static List<CountryList> countryList(){
     return <CountryList>[
       CountryList(id: 1, countryName: 'Nepal', countryCode: 'NP'),
-      CountryList(id: 1, countryName: 'USA', countryCode: 'US'),
+      CountryList(id: 2, countryName: 'USA', countryCode: 'US'),
     ];
   }
 }
