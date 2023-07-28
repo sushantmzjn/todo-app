@@ -14,12 +14,13 @@ class MatchDetail extends ConsumerWidget {
     return Scaffold(
       backgroundColor: const Color(0xff393646),
       appBar: AppBar(
-        title: Text('Match Detail'),
+        title: Text('Match Detail',style: TextStyle(color: Colors.white),),
         centerTitle: true,
         elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: const AlwaysScrollableScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Column(

@@ -16,7 +16,7 @@ class FootballLeague {
       final response = await dio
           .get('https://apiv2.allsportsapi.com/football', queryParameters: {
         'met': 'Leagues',
-        'APIkey': '179f06b0a651104fcb95a2a3edb1051e36e442edc731f549bfa32cd22df0c289'
+        'APIkey': 'a97b14c7384ba05ea85cf2506e2e8eeb7f19b4e7d15e1f22a00efc96c5496c5e'
       });
       final data = (response.data['result'] as List).map((e) => FootballLeagues.fromJson(e)).toList();
       return data;
@@ -28,7 +28,7 @@ class FootballLeague {
 }
 
 
-
+//football live score
 final footballLiveScoreProvider = FutureProvider((ref) => FootballLiveScore.getLiveScore());
 
 class FootballLiveScore {
@@ -38,7 +38,7 @@ class FootballLiveScore {
     try {
       final res = await dio.get('https://apiv2.allsportsapi.com/football', queryParameters: {
         'met': 'Livescore',
-        'APIkey': 'f06823809df2e6d2a586b9bd64b065f1c049ddb246f7275d607e2d1a1320a90f'
+        'APIkey': 'a97b14c7384ba05ea85cf2506e2e8eeb7f19b4e7d15e1f22a00efc96c5496c5e'
       });
       if(res.data['result'] == null){
         return Future.error('No Matches');

@@ -93,7 +93,9 @@ class _HiddenDrawerWidgetState extends State<HiddenDrawerWidget> {
       initPositionSelected: 0,
       isDraggable: true,
       elevationAppBar: 0,
-      leadingAppBar: Icon(Icons.menu_sharp),
+      backgroundColorAppBar: const Color(0xff393646),
+      styleAutoTittleName: TextStyle(color: Colors.white),
+      leadingAppBar: Icon(Icons.menu_sharp,color: Colors.white,),
       isTitleCentered: true,
     );
   }

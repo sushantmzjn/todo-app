@@ -22,7 +22,6 @@ class Ships extends ConsumerWidget {
                 ref.invalidate(shipProvider);
               },
               child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
                   itemCount: data.length,
                   itemBuilder: (context,index){
                     final ships = data[index];

@@ -24,16 +24,16 @@ class ShipDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final role = ships.roles.map((e) => e).toList().join(', ');
-
     return Scaffold(
       backgroundColor: const Color(0xff393646),
       appBar: AppBar(
-        title: Text('Ship Details'),
+        title: Text('Ship Details', style: TextStyle(color: Colors.white),),
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
             CachedNetworkImage(

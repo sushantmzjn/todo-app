@@ -66,8 +66,13 @@ class _MyAppState extends State<MyApp> {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
+            useMaterial3: true,
             colorScheme: ColorScheme.fromSwatch().copyWith(
-              primary: const Color(0xff393646)
+              primary: const Color(0xff393646),
+            ),
+            appBarTheme: const AppBarTheme(
+                color: Color(0xff393646),
+              surfaceTintColor: Colors.transparent,
             )
           ),
           home: HiddenDrawerWidget(),

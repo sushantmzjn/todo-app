@@ -72,7 +72,7 @@ class _FootballState extends ConsumerState<Football> with TickerProviderStateMix
                   onPressed: () async{
                     ref.invalidate(footballLiveScoreProvider);
                   },
-                  child: liveData.isRefreshing ? CupertinoActivityIndicator(color: Colors.white,) : Icon(Icons.refresh),
+                  child: liveData.isRefreshing ? CupertinoActivityIndicator() : Icon(Icons.refresh),
                 ),
               ],
             ),
@@ -86,13 +86,13 @@ class _FootballState extends ConsumerState<Football> with TickerProviderStateMix
                         ref.invalidate(footballLiveScoreProvider);
                       },
                       child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
                           itemCount: data.length,
                           itemBuilder: (context, index){
                             final score= data[index];
                             return Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-                              child: GestureDetector(
+                              child: InkWell(
+                                splashColor: Colors.red,
                                 onTap: (){
                                   Get.to(()=> MatchDetail(score: score),transition: Transition.rightToLeftWithFade);
                                 },
