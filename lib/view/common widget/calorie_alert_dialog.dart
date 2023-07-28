@@ -37,6 +37,7 @@ class _CalorieAlertDialogState extends State<CalorieAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+        backgroundColor: Colors.white,
         contentPadding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
         shape: BeveledRectangleBorder(
           borderRadius: BorderRadius.circular(6.0),
@@ -58,6 +59,7 @@ class _CalorieAlertDialogState extends State<CalorieAlertDialog> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(6.0),
                 ),
+                enabledBorder: OutlineInputBorder()
               ),
             ),
             TextFormField(
@@ -73,13 +75,14 @@ class _CalorieAlertDialogState extends State<CalorieAlertDialog> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(6.0),
                 ),
+                  enabledBorder: OutlineInputBorder()
               ),
             ),
             SizedBox(height: 8.h,),
             ElevatedButton(
                 onPressed: widget.onPressed,
               style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, 25.h)
+                minimumSize: Size(double.infinity, 25.h),
               ),
                 child: Text('Submit', style: TextStyle(fontSize: 14.sp),),
             )

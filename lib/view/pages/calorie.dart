@@ -36,7 +36,7 @@ class Calorie extends ConsumerWidget {
               children: [
                 Container(
                   height: 300.h,
-                  child: mealData.isEmpty ? Center(child: Text('Your Calorie List  is Empty')) : ListView.builder(
+                  child: mealData.isEmpty ? Center(child: Text('Your Calorie List is Empty', style: TextStyle(color: Colors.white),)) : ListView.builder(
                       itemCount: mealData.length,
                       itemBuilder: (context, index){
                         final now = DateFormat('yyyy-MM-dd').format(DateTime.parse(DateTime.now().toString()));
@@ -75,8 +75,6 @@ class Calorie extends ConsumerWidget {
                                           const Divider(color: Colors.white, height: 0,)
                                         ],
                                       );
-
-
                                     }),
                               ),
                             )

@@ -50,7 +50,6 @@ class About extends StatelessWidget {
                   },
                   icon: FaIcon(FontAwesomeIcons.facebook, color: Colors.white)
               ),
-              SizedBox(width: 10.h,),
               IconButton(
                   padding: EdgeInsets.zero,
                   constraints: BoxConstraints(),
@@ -59,7 +58,6 @@ class About extends StatelessWidget {
                   },
                   icon: FaIcon(FontAwesomeIcons.instagram, color: Colors.white,)
               ),
-              SizedBox(width: 10.h,),
               IconButton(
                   padding: EdgeInsets.zero,
                   constraints: BoxConstraints(),
@@ -68,7 +66,6 @@ class About extends StatelessWidget {
                   },
                   icon: FaIcon(FontAwesomeIcons.linkedin, color: Colors.white)
               ),
-              SizedBox(width: 10.h,),
               IconButton(
                   padding: EdgeInsets.zero,
                   constraints: BoxConstraints(),

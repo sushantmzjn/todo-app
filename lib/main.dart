@@ -70,6 +70,7 @@ class _MyAppState extends State<MyApp> {
             colorScheme: ColorScheme.fromSwatch().copyWith(
               primary: const Color(0xff393646),
             ),
+            scaffoldBackgroundColor: Colors.white,
             appBarTheme: const AppBarTheme(
                 color: Color(0xff393646),
               surfaceTintColor: Colors.transparent,
