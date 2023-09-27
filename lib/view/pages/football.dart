@@ -82,6 +82,8 @@ class _FootballState extends ConsumerState<Football> with TickerProviderStateMix
               child: liveData.when(
                   data: (data){
                     return RefreshIndicator(
+                      color: Colors.white,
+                      backgroundColor: const Color(0xff393646),
                       onRefresh: () async{
                         ref.invalidate(footballLiveScoreProvider);
                       },

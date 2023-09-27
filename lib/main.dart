@@ -72,6 +72,8 @@ class _MyAppState extends State<MyApp> {
             ),
             scaffoldBackgroundColor: Colors.white,
             appBarTheme: const AppBarTheme(
+              iconTheme: IconThemeData(color: Colors.white),
+                titleTextStyle: TextStyle(color: Colors.white),
                 color: Color(0xff393646),
               surfaceTintColor: Colors.transparent,
             )

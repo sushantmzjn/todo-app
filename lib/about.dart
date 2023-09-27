@@ -19,12 +19,12 @@ class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xff393646),
+      backgroundColor: const Color(0xff393646),
       body: Column(
         children: [
           CircleAvatar(
             radius: 60,
-            backgroundImage: NetworkImage('https://scontent.fktm7-1.fna.fbcdn.net/v/t1.18169-9/26112078_1985706811704543_6013809511908769784_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=0A0CxcxKKFAAX98ZrE0&_nc_oc=AQkapZYjknvfez9STV4XdeVdyo2-71VSTdo7Q29AI-76yLWKBYpIJaTEGB6c8063ez6nzNtYbpW7z_vFv9o11C99&_nc_ht=scontent.fktm7-1.fna&oh=00_AfCp5B6V1MvNXqW_7af6fDkBVvZbPNx9VSIQ6NmAowpQgA&oe=64D0AD0A'),
+            backgroundImage: NetworkImage('https://instagram.fktm8-1.fna.fbcdn.net/v/t51.2885-19/315764971_657094225884180_413666657439481713_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fktm8-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=bGJxlbTwY38AX8QcT6L&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfCm30xCQWIplX_KxlsKYPwn1HPQYnKHjlqB_G2iv7zn5Q&oe=6517E79C&_nc_sid=8b3546'),
           ),
           SizedBox(height: 12.h,),
           Text('Sushant Maharjan', style: TextStyle(color: Colors.white, fontSize: 16.sp),),
@@ -38,7 +38,7 @@ class About extends StatelessWidget {
               child: Text('sushantmaharjan08gmail.com', style: TextStyle(color: Colors.blue, fontSize: 12.sp, decoration: TextDecoration.underline),)),
           SizedBox(height: 1.h,),
           Text('Bungmati, Lalitpur 22', style: TextStyle(color: Colors.white, fontSize: 12.sp),),
-          SizedBox(height: 16.h,),
+          SizedBox(height: 5.h,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
