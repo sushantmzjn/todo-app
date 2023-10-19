@@ -115,6 +115,7 @@ class _YoutubePopularState extends ConsumerState<YoutubePopular> {
             // ),
             Expanded(
               child: ListView.builder(
+                physics: BouncingScrollPhysics(),
                 shrinkWrap: true,
                   itemCount: ytPopularVideos.popularVideos.items.length,
                   itemBuilder: (context, index){

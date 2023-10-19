@@ -77,7 +77,6 @@ class _FootballState extends ConsumerState<Football> with TickerProviderStateMix
               ],
             ),
           ),
-
           Expanded(
               child: liveData.when(
                   data: (data){
@@ -90,8 +89,9 @@ class _FootballState extends ConsumerState<Football> with TickerProviderStateMix
                       child: ListView.builder(
                           itemCount: data.length,
                           itemBuilder: (context, index){
-                            final score= data[index];
-                            return Padding(
+                            final score = data[index];
+                            return score.msg.isNotEmpty ? Center(child: Text('Api key expired : ${score.msg}', style: TextStyle(color: Colors.red),))
+                                : Padding(
                               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
                               child: InkWell(
                                 splashColor: Colors.red,
@@ -113,7 +113,7 @@ class _FootballState extends ConsumerState<Football> with TickerProviderStateMix
                                           children: [
                                             SizedBox(
                                                 height : 60.h,
-                                                child: score.home_team_logo.trim().isEmpty ? Center(child: Text('image not available')): Hero(
+                                                child: score.home_team_logo.trim().isEmpty ? const Center(child: Text('image not available')): Hero(
                                                     tag: 'image-${score.home_team_logo}',
                                                     child: Image.network(score.home_team_logo))
                                             ),
@@ -147,7 +147,6 @@ class _FootballState extends ConsumerState<Football> with TickerProviderStateMix
                                             SizedBox(height: 2.h,),
                                             Text(score.event_away_team, textAlign: TextAlign.center,),
                                             Text(score.event_away_formation, textAlign: TextAlign.center),
-
                                           ],
                                         ),
                                       ),

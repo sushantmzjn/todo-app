@@ -21,11 +21,10 @@ static Future<Either<String, YoutubePopular>> getPopularVideos({required String 
     final data = YoutubePopular.fromJson(res.data);
     // final data = (res.data['items'] as List).map((e) => YoutubePopular.fromJson(e)).toList();
     // print(YoutubePopular.fromJson(res.data));
-
     return Right(data);
 
-  }on DioError catch (err) {
-    return Left(DioException.getDioError(err));
+  }on DioException catch (err) {
+    return Left(DioExceptioned.getDioError(err));
   }
 
 }

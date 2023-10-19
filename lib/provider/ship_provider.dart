@@ -17,9 +17,9 @@ static Future<List<Ships>> getShips()async{
     final data = (response.data as List).map((e) => Ships.fromJson(e)).toList();
     return data;
     
-  }on DioError catch(err){
+  }on DioException catch(err){
     print(err);
-    throw DioException.getDioError(err);
+    throw DioExceptioned.getDioError(err);
   }
 
   }

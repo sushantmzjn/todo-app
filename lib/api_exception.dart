@@ -1,13 +1,12 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 
-class DioException  {
+class DioExceptioned  {
 
-  static String getDioError(DioError dioError) {
-    if (dioError.response != null) {
-      return _handleStatusCode(dioError.response!);
-    } else if (dioError.error is SocketException) {
+  static String getDioError(DioException dioException) {
+    if (dioException.response != null) {
+      return _handleStatusCode(dioException.response!);
+    } else if (dioException.error is SocketException) {
       return 'No Internet.';
     } else {
       return 'Unexpected error occurred.';

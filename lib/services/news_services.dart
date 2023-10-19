@@ -23,9 +23,9 @@ static Future<Either<String, List<News>>> getNews({
     final data = (response.data['articles'] as List).map((e) => News.fromJson(e)).toList();
     return Right(data);
     }
-  }on DioError catch(err){
+  }on DioException catch(err){
     print(err);
-    return Left(DioException.getDioError(err));
+    return Left(DioExceptioned.getDioError(err));
   }
 }
 }

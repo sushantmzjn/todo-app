@@ -14,6 +14,7 @@ class FootballLive {
   List<GoalScorers> goalscorers;
   List<Statistics> statistics;
   List<Cards> cards;
+  String msg;
 
   FootballLive({
     required this.event_date,
@@ -31,10 +32,12 @@ class FootballLive {
     required this.goalscorers,
     required this.statistics,
     required this.cards,
+    required this.msg
   });
 
   factory FootballLive.fromJson(Map<String, dynamic> json) {
     return FootballLive(
+      msg: json['msg'] ?? '',
       event_date: json['event_date'] ?? '',
       event_time: json['event_time'] ?? '',
       event_home_team: json['event_home_team'] ?? '',
@@ -47,9 +50,12 @@ class FootballLive {
       away_team_logo: json['away_team_logo'] ?? '',
       event_home_formation: json['event_home_formation'] ?? '',
       event_away_formation: json['event_away_formation'] ?? '',
-      goalscorers: List<GoalScorers>.from(json['goalscorers'].map((e) => GoalScorers.fromJson(e))) ?? [],
-      statistics: List<Statistics>.from(json['statistics'].map((e) => Statistics.fromJson(e))) ?? [],
-      cards: List<Cards>.from(json['cards'].map((e) => Cards.fromJson(e))) ?? [],
+      goalscorers: (json['goalscorers']) != null ?
+      List<GoalScorers>.from(json['goalscorers'].map((e) => GoalScorers.fromJson(e))) : [],
+      statistics: (json['statistics']) != null ?
+      List<Statistics>.from(json['statistics'].map((e) => Statistics.fromJson(e))) : [],
+      cards: (json['cards']) != null ?
+      List<Cards>.from(json['cards'].map((e) => Cards.fromJson(e))) : [],
     );
   }
 }

@@ -40,9 +40,8 @@ class _NewsState extends ConsumerState<News> {
         print('${position!.latitude}, ${position!.latitude}');
         List<Placemark> placemarks = await placemarkFromCoordinates(position!.latitude, position!.longitude);
         // print(placemarks[0]);
-        searchController.text = placemarks[0].subAdministrativeArea!;
+        searchController.text = placemarks[0].subLocality!;
         ref.read(newProvider.notifier).getNews(q: searchController.text.trim());
-
       }else{
 
       }
@@ -78,6 +77,7 @@ class _NewsState extends ConsumerState<News> {
                         }
                         return null;
                       },
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: searchController,
                       style: TextStyle(color: Colors.white, fontSize: 15.sp),
                       keyboardType: TextInputType.text,
@@ -102,13 +102,21 @@ class _NewsState extends ConsumerState<News> {
                       ),
                     ),
                   ),
-                  TextButton(onPressed: (){
+                  SizedBox(width: 8.w),
+                  TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0)
+                        )
+                      ),
+                      onPressed: (){
                     _form.currentState!.save();
                     FocusScope.of(context).unfocus();
                     if(_form.currentState!.validate()){
                     ref.read(newProvider.notifier).getNews(q: searchController.text.trim());
                     }
-                  }, child: Text('Search', style: TextStyle(color: Colors.white),))
+                  }, child: const Text('Search'))
                 ],
               ),
             ),
