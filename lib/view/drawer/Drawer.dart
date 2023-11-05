@@ -7,6 +7,7 @@ import 'package:todos/about.dart';
 import 'package:todos/view/pages/calorie.dart';
 import 'package:todos/view/pages/home_page.dart';
 import 'package:todos/view/pages/news.dart';
+import 'package:todos/view/pages/shipfreezed.dart';
 import 'package:todos/view/pages/ships.dart';
 
 import '../pages/football.dart';
@@ -60,7 +61,7 @@ class _HiddenDrawerWidgetState extends State<HiddenDrawerWidget> {
         ItemHiddenMenu(
             colorLineSelected: const Color(0xff393646),
             name: 'Ships', baseStyle: txtStyle, selectedStyle: selectedTxtStyle),
-        Ships(),
+        ShipFreeze(),
       ),
       ScreenHiddenDrawer(
         ItemHiddenMenu(

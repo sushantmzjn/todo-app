@@ -5,8 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todos/model/ships%20model/ship.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'model/ships model/ship_freezed.dart';
+
 class ShipDetail extends StatelessWidget {
-  final Ships ships;
+  final ShipsFreezed ships;
   ShipDetail({super.key, required this.ships});
 
   final txtStyle = TextStyle(color: Colors.white);
@@ -36,10 +38,14 @@ class ShipDetail extends StatelessWidget {
         physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
-            CachedNetworkImage(
-              errorWidget: (context, url, error)=> Text('image not found', style: txtStyle,),
-              placeholder: (context, url)=> Center(child: CupertinoActivityIndicator(color: Colors.white,)),
-              imageUrl: ships.image,),
+            SizedBox(
+              height: 180.h,
+              child: CachedNetworkImage(
+                fit: BoxFit.cover,
+                errorWidget: (context, url, error)=> Text('image not found', style: txtStyle,),
+                placeholder: (context, url)=> Center(child: CupertinoActivityIndicator(color: Colors.white,)),
+                imageUrl: ships.image,),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 12.0),
               child: Container(
